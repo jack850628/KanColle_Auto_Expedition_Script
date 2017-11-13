@@ -7,6 +7,7 @@ using String
 using Type
 call Mouse/Mouse
 call CheckCursorType/CheckCursorType
+call config
 
 class Math2:Math
 	function rand(i)
@@ -15,7 +16,7 @@ class Math2:Math
 endcl
 
 Math=Math2()
-/*艦隊收藏自動遠征腳本 版本:8.2 完成於2017/10/12 17:29*/
+/*艦隊收藏自動遠征腳本 版本:8.3 完成於2017/11/14 02:40*/
 class KanColle_Script
 	var su/**海域座標**/
 	var ktt2#遠征時間的計算方式：遠征總秒數-((遠征總秒數/60)*2)
@@ -30,35 +31,32 @@ class KanColle_Script
 		Stdio.println("2:撈水桶")
 		Stdio.println("3:撈鋁&家具箱(小)")
 		Stdio.println("--------------------------------------------")
-		do
+		do  
 			Stdio.print("選擇:")
 			switch=Type.toDigital(Stdio.scan())
-			if switch==1
-				su=/*座標:*/{{222+xy[0],220+xy[1]},{222+xy[0],280+xy[1]},{222+xy[0],160+xy[1]}} ,ktt2=/*時間:*/{lose(1200)-40,lose(5400)-30,lose(14400)-30} ,Seas_Number=/*撈油用 海域:*/{3,5,9}
-			elseif switch==2
-				su=/*座標:*/{{222+xy[0],190+xy[1]},{222+xy[0],250+xy[1]},{222+xy[0],190+xy[1]}} ,ktt2=/*時間:*/{lose(1800)-50,lose(3000)-40,lose(5400)-30} ,Seas_Number=/*撈水桶用 海域:*/{2,4,10}
-			elseif switch==3
-				su=/*座標:*/{{222+xy[0],220+xy[1]},{222+xy[0],310+xy[1]},{222+xy[0],220+xy[1]}} ,ktt2=/*時間:*/{lose(1200)-50,lose(2400)-45,lose(18000)-30} ,Seas_Number=/*撈鋁&家具箱(小)用 海域:*/{3,6,11}
+			if [1<=switch<=3]
+				su=/*座標:*/{{Config.sea[switch-1][0][0]+Config.xy[0],Config.sea[switch-1][0][1]+Config.xy[1]},{Config.sea[switch-1][1][0]+Config.xy[0],Config.sea[switch-1][1][1]+Config.xy[1]},{Config.sea[switch-1][2][0]+Config.xy[0],Config.sea[switch-1][2][1]+Config.xy[1]}}
+				ktt2=/*時間:*/{lose(Config.attackTime[switch-1][0])-40,lose(Config.attackTime[switch-1][1])-30,lose(Config.attackTime[switch-1][2])-30}
+				Seas_Number=/*撈油用 海域:*/Config.seasNumber[switch-1]
 			endif
 		dwhile ![0<switch<=3]
 		#遠征每格上下間距具30個像素點，第一格Y=160
 	endfu
 	
-	var xy={1040,166}#flash遊戲框左上角的的在螢幕上的座標
 	
 	
-	var ph={165+xy[0],108+xy[1]}/**編成**/,mk={60+xy[0],223+xy[1]}/**母港**/,sug={360+xy[0],71+xy[1]}/**收遠征**/,pg={47+xy[0],195+xy[1]}/**補給**/
-	var fs={110+xy[0],112+xy[1]}/**給油彈**/,hg={153+xy[0],222+xy[1]}/**出擊**/
-	var gt={{168+xy[0],112+xy[1]},{198+xy[0],112+xy[1]},{228+xy[0],112+xy[1]}}/**艦隊補給座標**/,ng={591+xy[0],147+xy[1]}/**遠征**/
-	var gt2={{415+xy[0],104+xy[1]}/**第二#**/,{445+xy[0],104+xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+xy[0],428+xy[1]}/**決定鈕**/
-	var hgb={534+xy[0],428+xy[1]}/**遠征開始鈕**/,hsb={491+xy[0],292+xy[1]}/**取消鈕**/,fc={184+xy[0],427+xy[1]}/**換頁鈕**/
+	var ph={165+Config.xy[0],108+Config.xy[1]}/**編成**/,mk={60+Config.xy[0],223+Config.xy[1]}/**母港**/,sug={360+Config.xy[0],71+Config.xy[1]}/**收遠征**/,pg={47+Config.xy[0],195+Config.xy[1]}/**補給**/
+	var fs={110+Config.xy[0],112+Config.xy[1]}/**給油彈**/,hg={153+Config.xy[0],222+Config.xy[1]}/**出擊**/
+	var gt={{168+Config.xy[0],112+Config.xy[1]},{198+Config.xy[0],112+Config.xy[1]},{228+Config.xy[0],112+Config.xy[1]}}/**艦隊補給座標**/,ng={591+Config.xy[0],147+Config.xy[1]}/**遠征**/
+	var gt2={{415+Config.xy[0],104+Config.xy[1]}/**第二#**/,{445+Config.xy[0],104+Config.xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+Config.xy[0],428+Config.xy[1]}/**決定鈕**/
+	var hgb={534+Config.xy[0],428+Config.xy[1]}/**遠征開始鈕**/,hsb={491+Config.xy[0],292+Config.xy[1]}/**取消鈕**/,fc={184+Config.xy[0],427+Config.xy[1]}/**換頁鈕**/
 	var _25s=2500,kancount=3#,delay=600/*這是固定的延遲時間*/
 	var go=0,state="s"#一開始直接進設定畫面
 	var threading=Threading()#平行執行續
-	var 確認遠征是否可以收遠征座標={"x"=>739+xy[0],"y"=>xy[1]+29}
-	var 確認遠征艦隊是否已經回來座標={"x"=>xy[0]+195,"y"=>xy[1]+258}
-	var 去除手掌座標={{"x"=>xy[0]+380,"y"=>xy[1]+213},{"x"=>xy[0]+380,"y"=>xy[1]+223}}
-	var 判斷是否為手掌座標={{"x"=>xy[0]+184,"y"=>xy[1]+10},{"x"=>mk[0],"y"=>mk[1]+47/*加上47避免按到補給紐*/}}
+	var 確認遠征是否可以收遠征座標={"x"=>739+Config.xy[0],"y"=>Config.xy[1]+29}
+	var 確認遠征艦隊是否已經回來座標={"x"=>Config.xy[0]+195,"y"=>Config.xy[1]+258}
+	var 去除手掌座標={{"x"=>Config.xy[0]+380,"y"=>Config.xy[1]+213},{"x"=>Config.xy[0]+380,"y"=>Config.xy[1]+223}}
+	var 判斷是否為手掌座標={{"x"=>Config.xy[0]+184,"y"=>Config.xy[1]+10},{"x"=>mk[0],"y"=>mk[1]+47/*加上47避免按到補給紐*/}}
 	
 	
 	function lose(s)
@@ -349,7 +347,7 @@ class KanColle_Script
 			function PS()
 				Stdio.printf("模式:{0}，艦隊秒數快照：{1} {2} {3}\n",{switch,ktt[0],ktt[1],ktt[2]})
 				Stdio.println("--------狀態設定--------")
-				Stdio.println("1.設定秒數")
+				Stdio.println("1.設定艦隊出擊剩餘秒數")
 				Stdio.println("e.結束腳本")
 				Stdio.println("q.離開設定")
 				Stdio.println("------------------------")
@@ -361,7 +359,7 @@ class KanColle_Script
 				Stdio.print(">>")
 				inp=Stdio.scan()
 				if inp=="1"
-					Stdio.println("秒數設定語法:<艦隊編號(2~4)> <時> <分> <秒>")
+					Stdio.println("秒數設定語法:<艦隊編號(2~4)> <時> <分> <秒>\n另外，若要停用艦隊，只需要把該艦隊剩餘秒數設定成-2即可")
 					try
 						Stdio.print("?>>")
 						var inparr=String.split(Stdio.scan()," "),temp=Type.toDigital(inparr[0])
