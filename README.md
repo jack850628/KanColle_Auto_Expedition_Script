@@ -16,10 +16,16 @@ https://github.com/jack850628/KanColle_Auto_Expedition_Script/blob/master/config
 
 
 起始畫面
+\
 ![Alt text](https://raw.githubusercontent.com/jack850628/KanColle_Auto_Expedition_Script/master/demo1.png)
+\
 設定畫面
+\
 ![Alt text](https://raw.githubusercontent.com/jack850628/KanColle_Auto_Expedition_Script/master/demo2.png)
+\
 開始自動遠征畫面
+\
 ![Alt text](https://raw.githubusercontent.com/jack850628/KanColle_Auto_Expedition_Script/master/demo3.png)
+\
 
 關於AShell：https://github.com/jack850628/AShell
