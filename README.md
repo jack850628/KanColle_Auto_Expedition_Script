@@ -7,7 +7,6 @@
 主要執行的腳本檔是KanColle_Auto_Expedition_Script.ash 
 \
 https://github.com/jack850628/KanColle_Auto_Expedition_Script/blob/master/KanColle_Auto_Expedition_Script.ash
-\
 
 腳本設定檔是config.ash 
 \
