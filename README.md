@@ -4,6 +4,8 @@
 
 這個腳本只有使用Win32 API操控滑鼠來自動遠征，並使用倒數計時來判斷遠征是否已經回來，還有使用Win32 API來判斷滑鼠圖示狀態來得知按鈕是否可以按下來判斷畫面是否還在Loading。
 
+另外這個腳本只是以研究為目的，若要使用發生問題後果自負！
+
 主要執行的腳本檔是KanColle_Auto_Expedition_Script.ash 
 \
 https://github.com/jack850628/KanColle_Auto_Expedition_Script/blob/master/KanColle_Auto_Expedition_Script.ash
