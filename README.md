@@ -1,6 +1,6 @@
 # KanColle_Auto_Expedition_Script
 艦隊收藏自動遠征腳本\
-使用AShell腳本語言撰寫
+使用AShell腳本語言撰寫，關於AShell：https://github.com/jack850628/AShell
 
 這個腳本只有使用Win32 API操控滑鼠來自動遠征，並使用倒數計時來判斷遠征是否已經回來，還有使用Win32 API來判斷滑鼠圖示狀態來得知按鈕是否可以按下來判斷畫面是否還在Loading。
 
@@ -27,4 +27,3 @@ https://github.com/jack850628/KanColle_Auto_Expedition_Script/blob/master/config
 ![Alt text](https://raw.githubusercontent.com/jack850628/KanColle_Auto_Expedition_Script/master/demo3.png)
 
 
-關於AShell：https://github.com/jack850628/AShell
