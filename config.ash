@@ -52,5 +52,10 @@ class Config
 					11#第四艦隊
 				}
 			}
+		var pages={#遠征海域所在頁面
+			1,#第二艦隊
+			1,#第三艦隊
+			2#第四艦隊
+		}
 	endst
 endcl
