@@ -59,7 +59,7 @@ class KanColle_Script
 		}/**換頁鈕**/
 	var _25s=2500,kancount=3#,delay=600/*這是固定的延遲時間*/
 	var go=0,state="s"#一開始直接進設定畫面
-	var threading=Threading()#平行執行續
+	var readKeyboardthreading=Threading(),threading=Threading()#平行執行續
 	var 確認遠征是否可以收遠征座標={"x"=>739+Config.xy[0],"y"=>Config.xy[1]+29}
 	var 確認遠征艦隊是否已經回來座標={"x"=>Config.xy[0]+195,"y"=>Config.xy[1]+258}
 	var 去除手掌座標={{"x"=>Config.xy[0]+380,"y"=>Config.xy[1]+213},{"x"=>Config.xy[0]+380,"y"=>Config.xy[1]+223}}
@@ -143,7 +143,7 @@ class KanColle_Script
 		for var i=0;i<3;i=i+1
 			ktt[i]=lose((((ktt[i][0]*60)+ktt[i][1])*60)+ktt[i][2])
 		endfo
-		threading.start(Read)
+		readKeyboardthreading.start(Read)
 		while true
 			if state
 				Stdio.print(ktt[0]+" "+ktt[1]+" "+ktt[2]+
@@ -169,7 +169,7 @@ class KanColle_Script
 			#當有一個艦隊的遠征時間為零了且其他兩個艦隊的時間不再1~60之間的區域，這樣做是為了防止艦隊已經回來但時間還沒歸零的情況
 			if !go&&state&&(ktt[0]>60||ktt[0]<1)&&(ktt[1]>60||ktt[1]<1)&&(ktt[2]>60||ktt[2]<1)
 				if ktt[0]==0||ktt[1]==0||ktt[2]==0
-					threading.start(to_Home)
+					threading=Threading().start(to_Home)
 					go=1
 				endif
 			endif
@@ -187,7 +187,7 @@ class KanColle_Script
 		click()
 		Thread.sleep(_25s)
 		if 判斷是否為手掌()
-			threading.start(Supply)
+			threading=Threading().start(Supply)
 			return
 		endif
 		Mouse.mousem(mk[0]+Math.rand(27),mk[1]+Math.rand(70))
@@ -199,7 +199,7 @@ class KanColle_Script
 			recovery()
 			return
 		endif
-		threading.start(Supply)
+		threading=Threading().start(Supply)
 	endfu
 	function KanBreak()
 		for var i=0;i<3;i=i+1
@@ -235,7 +235,7 @@ class KanColle_Script
 		Thread.sleep(s)
 		
 		if 判斷是否為手掌()
-			threading.start(Supply)
+			threading=Threading().start(Supply)
 			return
 		endif
 
@@ -260,9 +260,9 @@ class KanColle_Script
 			return
 		endif
 		if ktt[0]==0||ktt[1]==0||ktt[2]==0
-			threading.start(Supply)
+			threading=Threading().start(Supply)
 		else
-			threading.start(Expedition)
+			threading=Threading().start(Expedition)
 		endif
 	endfu
 	
@@ -276,7 +276,7 @@ class KanColle_Script
 		click()
 		Thread.sleep((s+100))
 		if 判斷是否為手掌()
-			threading.start(Expedition)
+			threading=Threading().start(Expedition)
 			return
 		endif
 		Mouse.mousem(ng[0]+Math.rand(108),ng[1]+Math.rand(193))
@@ -328,7 +328,7 @@ class KanColle_Script
 		Thread.sleep(_25s)
 		去除手掌()
 		if ktt[0]==0||ktt[1]==0||ktt[2]==0
-			threading.start(Supply)
+			threading=Threading().start(Supply)
 		else
 			while checkKanIsBreak()==1#如果有提早回來的遠征
 				KanBreak()
