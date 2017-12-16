@@ -49,7 +49,7 @@ class KanColle_Script
 	var fs={110+Config.xy[0],112+Config.xy[1]}/**給油彈**/,hg={153+Config.xy[0],222+Config.xy[1]}/**出擊**/
 	var gt={{168+Config.xy[0],112+Config.xy[1]},{198+Config.xy[0],112+Config.xy[1]},{228+Config.xy[0],112+Config.xy[1]}}/**艦隊補給座標**/,ng={591+Config.xy[0],147+Config.xy[1]}/**遠征**/
 	var gt2={{415+Config.xy[0],104+Config.xy[1]}/**第二#**/,{445+Config.xy[0],104+Config.xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+Config.xy[0],428+Config.xy[1]}/**決定鈕**/
-	var hgb={534+Config.xy[0],428+Config.xy[1]}/**遠征開始鈕**/,hsb={491+Config.xy[0],292+Config.xy[1]}/**取消鈕**/
+	var hgb={534+Config.xy[0],428+Config.xy[1]}/**遠征開始鈕**//**,hsb={491+Config.xy[0],292+Config.xy[1]}取消鈕**/
 	var fc={
 			{116+Config.xy[0],427+Config.xy[1]},
 			{184+Config.xy[0],427+Config.xy[1]},
@@ -292,7 +292,7 @@ class KanColle_Script
 						click()
 						nowPage=Config.pages[i]
 					endif
-					Mouse.mousem(su[i][0]+Math.rand(214),su[i][1]+Math.rand(28))
+					Mouse.mousem(su[i][0]+Math.rand(231),su[i][1]+Math.rand(28))
 					checkCheckCursorType()
 					click()
 					Thread.sleep(400)
@@ -316,10 +316,10 @@ class KanColle_Script
 						ktt[i]=ktt2[i]+(delay+Math.rand(600)這裡是浮動式延遲時間)
 					endif*/
 					Thread.sleep(5000)
-					Mouse.mousem(hsb[0],hsb[1])
+					/*Mouse.mousem(hsb[0],hsb[1])
 					checkCheckCursorType()
 					click()
-					Thread.sleep(500)
+					Thread.sleep(500)*/
 			endif
 		endfo
 		Mouse.mousem(mk[0]+Math.rand(30),mk[1]+Math.rand(72))
