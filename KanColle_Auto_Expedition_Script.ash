@@ -21,6 +21,7 @@ class KanColle_Script
 	var su/**海域座標**/
 	var ktt2#遠征時間的計算方式：遠征總秒數-((遠征總秒數/60)*2)
 	var Seas_Number/*海域編號，用於遠征即將回港的提醒*/
+	var pages
 	var switch
 	
 	
@@ -38,6 +39,7 @@ class KanColle_Script
 				su=/*座標:*/{{Config.sea[switch-1][0][0]+Config.xy[0],Config.sea[switch-1][0][1]+Config.xy[1]},{Config.sea[switch-1][1][0]+Config.xy[0],Config.sea[switch-1][1][1]+Config.xy[1]},{Config.sea[switch-1][2][0]+Config.xy[0],Config.sea[switch-1][2][1]+Config.xy[1]}}
 				ktt2=/*時間:*/{lose(Config.attackTime[switch-1][0])-40,lose(Config.attackTime[switch-1][1])-30,lose(Config.attackTime[switch-1][2])-30}
 				Seas_Number=/*撈油用 海域:*/Config.seasNumber[switch-1]
+				pages=Config.pages[switch-1]
 			endif
 		dwhile ![0<switch<=3]
 		#遠征每格上下間距具30個像素點，第一格Y=160
@@ -286,11 +288,11 @@ class KanColle_Script
 		var nowPage=1
 		for var i=0;i<kancount;i=i+1
 			if ktt[i]==-1
-					if Config.pages[i]!=nowPage
-						Mouse.mousem(fc[Config.pages[i]-1][0]+Math.rand(33),fc[Config.pages[i]-1][1]+Math.rand(26))
+					if pages[i]!=nowPage
+						Mouse.mousem(fc[pages[i]-1][0]+Math.rand(33),fc[pages[i]-1][1]+Math.rand(26))
 						checkCheckCursorType()
 						click()
-						nowPage=Config.pages[i]
+						nowPage=pages[i]
 					endif
 					Mouse.mousem(su[i][0]+Math.rand(231),su[i][1]+Math.rand(28))
 					checkCheckCursorType()
