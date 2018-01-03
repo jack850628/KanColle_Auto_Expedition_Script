@@ -54,7 +54,7 @@ class KanColle_Script
 	var hgb={534+Config.xy[0],428+Config.xy[1]}/**遠征開始鈕**//**,hsb={491+Config.xy[0],292+Config.xy[1]}取消鈕**/
 	var fc={
 			{116+Config.xy[0],427+Config.xy[1]},
-			{184+Config.xy[0],427+Config.xy[1]},
+			{187+Config.xy[0],427+Config.xy[1]},
 			{244+Config.xy[0],427+Config.xy[1]},
 			{294+Config.xy[0],427+Config.xy[1]},
 			{355+Config.xy[0],427+Config.xy[1]}
