@@ -1,0 +1,16 @@
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\bin\Debug\KanColle_Remind.exe.config
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\bin\Debug\KanColle_Remind.exe
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\bin\Debug\KanColle_Remind.pdb
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.csprojResolveAssemblyReference.cache
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.Form1.resources
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.Properties.Resources.resources
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.csproj.GenerateResource.Cache
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.exe
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.pdb
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\bin\Debug\KanColle_Remind.exe.manifest
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\bin\Debug\KanColle_Remind.application
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.exe.manifest
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.application
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\Interop.MediaPlayer.dll
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\Interop.WMPLib.dll
+d:\users\暘修\documents\visual studio 2015\Projects\KanColle_Remind\KanColle_Remind\obj\Debug\KanColle_Remind.csproj.ResolveComReference.cache
