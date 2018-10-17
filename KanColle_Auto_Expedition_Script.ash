@@ -10,13 +10,11 @@ call CheckCursorType/CheckCursorType
 call config
 
 class Math2:Math
-	function rand(i)
-		return super.rand(i-1)
-	endfu
+	function rand(i) = super.rand(i-1)
 endcl
 
 Math=Math2()
-/*艦隊收藏自動遠征腳本 版本:8.3 完成於2017/11/14 03:04*/
+/*艦隊收藏自動遠征腳本 版本:8.3.1 完成於2018/10/2 01:26*/
 class KanColle_Script
 	var su/**海域座標**/
 	var ktt2#遠征時間的計算方式：遠征總秒數-((遠征總秒數/60)*2)
@@ -50,14 +48,16 @@ class KanColle_Script
 	var ph={165+Config.xy[0],108+Config.xy[1]}/**編成**/,mk={60+Config.xy[0],223+Config.xy[1]}/**母港**/,sug={360+Config.xy[0],71+Config.xy[1]}/**收遠征**/,pg={47+Config.xy[0],195+Config.xy[1]}/**補給**/
 	var fs={110+Config.xy[0],112+Config.xy[1]}/**給油彈**/,hg={153+Config.xy[0],222+Config.xy[1]}/**出擊**/
 	var gt={{168+Config.xy[0],112+Config.xy[1]},{198+Config.xy[0],112+Config.xy[1]},{228+Config.xy[0],112+Config.xy[1]}}/**艦隊補給座標**/,ng={591+Config.xy[0],147+Config.xy[1]}/**遠征**/
-	var gt2={{415+Config.xy[0],104+Config.xy[1]}/**第二#**/,{445+Config.xy[0],104+Config.xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+Config.xy[0],428+Config.xy[1]}/**決定鈕**/
+	var gt2={{415+Config.xy[0],106+Config.xy[1]}/**第二#**/,{445+Config.xy[0],106+Config.xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+Config.xy[0],428+Config.xy[1]}/**決定鈕**/
 	var hgb={534+Config.xy[0],428+Config.xy[1]}/**遠征開始鈕**//**,hsb={491+Config.xy[0],292+Config.xy[1]}取消鈕**/
 	var fc={
-			{116+Config.xy[0],427+Config.xy[1]},
-			{187+Config.xy[0],427+Config.xy[1]},
-			{244+Config.xy[0],427+Config.xy[1]},
-			{294+Config.xy[0],427+Config.xy[1]},
-			{355+Config.xy[0],427+Config.xy[1]}
+			{112+Config.xy[0],431+Config.xy[1]},
+			{154+Config.xy[0],431+Config.xy[1]},
+			{195+Config.xy[0],431+Config.xy[1]},
+			{236+Config.xy[0],431+Config.xy[1]},
+			{278+Config.xy[0],431+Config.xy[1]},
+			{319+Config.xy[0],431+Config.xy[1]},
+			{360+Config.xy[0],431+Config.xy[1]}
 		}/**換頁鈕**/
 	var _25s=2500,kancount=3#,delay=600/*這是固定的延遲時間*/
 	var go=0,state="s"#一開始直接進設定畫面
@@ -68,9 +68,7 @@ class KanColle_Script
 	var 判斷是否為手掌座標={{"x"=>Config.xy[0]+184,"y"=>Config.xy[1]+10},{"x"=>mk[0],"y"=>mk[1]+47/*加上47避免按到補給紐*/}}
 	
 	
-	function lose(s)
-		return s-(s//60)
-	endfu
+	function lose(s) = s-(s//60)
 	var ktt={{0,0,0},{0,0,0},{0,0,0}}#時,分,秒
 	#ktt[0]=ktt2[0],ktt[1]=ktt2[1],ktt[2]=ktt2[2]
 	
@@ -80,20 +78,18 @@ class KanColle_Script
 		dwhile !CheckCursorType.getCheckCursorType(CheckCursorType.IDC_HAND)
 	endfu
 	function checkKanIsBreak()#確認遠征艦隊是否已經回來
+		Mouse.mousem(確認遠征艦隊是否已經回來座標["x"],確認遠征艦隊是否已經回來座標["y"])
 		do
-			Mouse.mousem(確認遠征是否可以收遠征座標["x"],確認遠征是否可以收遠征座標["y"])
 			Thread.sleep(100)
 			if CheckCursorType.getCheckCursorType(CheckCursorType.IDC_HAND)
-				return 1
-			endif
-			Mouse.mousem(確認遠征艦隊是否已經回來座標["x"],確認遠征艦隊是否已經回來座標["y"])
-			Thread.sleep(100)
-			if CheckCursorType.getCheckCursorType(CheckCursorType.IDC_HAND)
-				return 2
+				break
 			endif
 		dwhile true
+		Mouse.mousem(確認遠征是否可以收遠征座標["x"],確認遠征是否可以收遠征座標["y"])
+		Thread.sleep(100)
+		return CheckCursorType.getCheckCursorType(CheckCursorType.IDC_HAND) ? 1 : 2
 	endfu
-	function 去除手掌()
+	/*function 去除手掌()
 		do
 			for var i=0;i<去除手掌座標.size();i=i+1
 				Mouse.mousem(去除手掌座標[i]["x"],去除手掌座標[i]["y"])
@@ -103,7 +99,7 @@ class KanColle_Script
 				endif
 			endfo
 		dwhile true
-	endfu
+	endfu*/
 	function 判斷是否為手掌()
 		Mouse.mousem(判斷是否為手掌座標[0]["x"],判斷是否為手掌座標[0]["y"])
 		Thread.sleep(100)
@@ -117,6 +113,7 @@ class KanColle_Script
 			if CheckCursorType.getCheckCursorType(CheckCursorType.IDC_HAND)
 				click()
 			endif
+			Thread.sleep(3000)
 			Mouse.mousem(判斷是否為手掌座標[0]["x"],判斷是否為手掌座標[0]["y"])
 			Thread.sleep(500)
 			Mouse.mousem(判斷是否為手掌座標[0]["x"]+5,判斷是否為手掌座標[0]["y"])
@@ -196,7 +193,7 @@ class KanColle_Script
 		checkCheckCursorType()
 		click()
 		Thread.sleep(_25s)
-		去除手掌()
+		#去除手掌()
 		if !state
 			recovery()
 			return
@@ -256,7 +253,7 @@ class KanColle_Script
 		checkCheckCursorType()
 		click()
 		Thread.sleep(_25s)
-		去除手掌()
+		#去除手掌()
 		if !state
 			recovery()
 			return
@@ -289,12 +286,12 @@ class KanColle_Script
 		for var i=0;i<kancount;i=i+1
 			if ktt[i]==-1
 					if pages[i]!=nowPage
-						Mouse.mousem(fc[pages[i]-1][0]+Math.rand(33),fc[pages[i]-1][1]+Math.rand(26))
+						Mouse.mousem(fc[pages[i]-1][0]+Math.rand(35),fc[pages[i]-1][1]+Math.rand(19))
 						checkCheckCursorType()
 						click()
 						nowPage=pages[i]
 					endif
-					Mouse.mousem(su[i][0]+Math.rand(231),su[i][1]+Math.rand(28))
+					Mouse.mousem(su[i][0]+Math.rand(231),su[i][1]+Math.rand(26))
 					checkCheckCursorType()
 					click()
 					Thread.sleep(400)
@@ -328,7 +325,7 @@ class KanColle_Script
 		checkCheckCursorType()
 		click()
 		Thread.sleep(_25s)
-		去除手掌()
+		#去除手掌()
 		if ktt[0]==0||ktt[1]==0||ktt[2]==0
 			threading=Threading().start(Supply)
 		else
