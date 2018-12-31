@@ -26,20 +26,21 @@ class KanColle_Script
 	function _inst_()
 		Stdio.println("--------------------------------------------")
 		Stdio.println("            艦隊收藏自動遠征腳本")
-		Stdio.println("1:撈油")
-		Stdio.println("2:撈水桶")
-		Stdio.println("3:撈鋁&家具箱(小)")
+		for (var i=0;i<Config.title.size();i=i+1)
+			Stdio.println(Config.title[i])
+		endif
 		Stdio.println("--------------------------------------------")
 		do  
 			Stdio.print("選擇:")
-			switch=Type.toDigital(Stdio.scan())
-			if [1<=switch<=3]
-				su=/*座標:*/{{Config.sea[switch-1][0][0]+Config.xy[0],Config.sea[switch-1][0][1]+Config.xy[1]},{Config.sea[switch-1][1][0]+Config.xy[0],Config.sea[switch-1][1][1]+Config.xy[1]},{Config.sea[switch-1][2][0]+Config.xy[0],Config.sea[switch-1][2][1]+Config.xy[1]}}
-				ktt2=/*時間:*/{lose(Config.attackTime[switch-1][0])-40,lose(Config.attackTime[switch-1][1])-30,lose(Config.attackTime[switch-1][2])-30}
-				Seas_Number=/*撈油用 海域:*/Config.seasNumber[switch-1]
-				pages=Config.pages[switch-1]
-			endif
-		dwhile ![0<switch<=3]
+			switch=Stdio.inputNumber()
+		dwhile ![0<switch<=Config.title.size()]
+		
+		su=/*座標:*/{{Config.sea[switch-1][0][0]+Config.xy[0],Config.sea[switch-1][0][1]+Config.xy[1]},{Config.sea[switch-1][1][0]+Config.xy[0],Config.sea[switch-1][1][1]+Config.xy[1]},{Config.sea[switch-1][2][0]+Config.xy[0],Config.sea[switch-1][2][1]+Config.xy[1]}}
+		ktt2=/*時間:*/{lose(Config.attackTime[switch-1][0])-40,lose(Config.attackTime[switch-1][1])-30,lose(Config.attackTime[switch-1][2])-30}
+		Seas_Number=/*海域:*/Config.seasNumber[switch-1]
+		pages=Config.pages[switch-1]
+		
+		switch = Config.title[switch-1]
 		#遠征每格上下間距具30個像素點，第一格Y=160
 	endfu
 	
@@ -91,7 +92,7 @@ class KanColle_Script
 	endfu
 	/*function 去除手掌()
 		do
-			for var i=0;i<去除手掌座標.size();i=i+1
+			for (var i=0;i<去除手掌座標.size();i=i+1)
 				Mouse.mousem(去除手掌座標[i]["x"],去除手掌座標[i]["y"])
 				Thread.sleep(100)
 				if CheckCursorType.getCheckCursorType(CheckCursorType.IDC_ARROW)
@@ -139,7 +140,7 @@ class KanColle_Script
 	var CKR=Call_KanColle_Remind()#通知
 	
 	function main()
-		for var i=0;i<3;i=i+1
+		for (var i=0;i<3;i=i+1)
 			ktt[i]=lose((((ktt[i][0]*60)+ktt[i][1])*60)+ktt[i][2])
 		endfo
 		readKeyboardthreading.start(Read)
@@ -148,7 +149,7 @@ class KanColle_Script
 				Stdio.print(ktt[0]+" "+ktt[1]+" "+ktt[2]+
 						"\ns:設定選單")
 			endif
-			for var index=0;index<3;index=index+1
+			for (var index=0;index<3;index=index+1)
 				if ktt[index]>0
 					if ktt[index]==60
 						CKR.set_content_and_start("注意","出擊在第"+Seas_Number[index]+
@@ -158,7 +159,7 @@ class KanColle_Script
 					ktt[index]=(ktt[index]-1)
 				endif
 			endfo
-			/*for var i=0;i<3&&!go&&state;i=i+1
+			/*for (var i=0;i<3&&!go&&state;i=i+1)
 				if ktt[i]==0&&(ktt[(i+1)%3]>60||ktt[(i+1)%3]<=0)&&(ktt[(i+2)%3]>60||ktt[(i+2)%3]<=0)
 					#當有一個艦隊的遠征時間為零了且其他兩個艦隊的時間不再1~60之間的區域，這樣做是為了防止艦隊已經回來但時間還沒歸零的情況
 					threading.start(to_Home)
@@ -201,7 +202,7 @@ class KanColle_Script
 		threading=Threading().start(Supply)
 	endfu
 	function KanBreak()
-		for var i=0;i<3;i=i+1
+		for (var i=0;i<3;i=i+1)
 			Mouse.mousem(sug[0]+Math.rand(437),sug[1]+Math.rand(354))
 			if i!=0
 				checkCheckCursorType()
@@ -211,7 +212,7 @@ class KanColle_Script
 		endfo
 	endfu
 	function Supply()#接回艦隊並補給
-		for var i=0;i<kancount;i=i+1
+		for (var i=0;i<kancount;i=i+1)
 			if ktt[i]==0
 				ktt[i]=-1
 				if checkKanIsBreak()==1#如果有遠征收
@@ -238,7 +239,7 @@ class KanColle_Script
 			return
 		endif
 
-		for var i=0;i<kancount;i=i+1
+		for (var i=0;i<kancount;i=i+1)
 			if ktt[i]==-1
 				Mouse.mousem(gt[i][0]+Math.rand(16),gt[i][1]+Math.rand(16))
 				checkCheckCursorType()
@@ -283,7 +284,7 @@ class KanColle_Script
 		click()
 		Thread.sleep((s+1000))
 		var nowPage=1
-		for var i=0;i<kancount;i=i+1
+		for (var i=0;i<kancount;i=i+1)
 			if ktt[i]==-1
 					if pages[i]!=nowPage
 						Mouse.mousem(fc[pages[i]-1][0]+Math.rand(35),fc[pages[i]-1][1]+Math.rand(19))
@@ -342,7 +343,7 @@ class KanColle_Script
 	endfu
 
 	function recovery()#艦隊送出後的狀態還原
-		for var i=0;i<kancount;i=i+1
+		for (var i=0;i<kancount;i=i+1)
 			if ktt[i]==-1
 				ktt[i]=0
 			endif
