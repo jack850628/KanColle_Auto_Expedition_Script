@@ -22,7 +22,7 @@ class Mouse
 				py = (y-_y) / len
 				px = (x-_x) / len
 			endif
-			for var i=0,tx=_x,ty=_y;i<=len;i=i+1
+			for (var i=0,tx=_x,ty=_y;i<=len;i=i+1)
 				#Stdio.println("Mouse\\Mouse_Event m "..Type.toInteger(tx).." "..Type.toInteger(ty))
 				System.system("Mouse\\Mouse_Event m "..Type.toInteger(tx).." "..Type.toInteger(ty))
 				tx = tx+px
