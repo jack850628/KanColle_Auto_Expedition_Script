@@ -9,6 +9,8 @@ call Mouse/Mouse
 call CheckCursorType/CheckCursorType
 call config
 
+System.system("echo 清空 > C:\\AShell\\debug.txt")#除錯用
+
 class Math2:Math
 	function rand(i) = super.rand(i-1)
 endcl
