@@ -50,17 +50,17 @@ class KanColle_Script
 	
 	var ph={165+Config.xy[0],108+Config.xy[1]}/**編成**/,mk={60+Config.xy[0],223+Config.xy[1]}/**母港**/,sug={360+Config.xy[0],71+Config.xy[1]}/**收遠征**/,pg={47+Config.xy[0],195+Config.xy[1]}/**補給**/
 	var fs={110+Config.xy[0],112+Config.xy[1]}/**給油彈**/,hg={153+Config.xy[0],222+Config.xy[1]}/**出擊**/
-	var gt={{168+Config.xy[0],112+Config.xy[1]},{198+Config.xy[0],112+Config.xy[1]},{228+Config.xy[0],112+Config.xy[1]}}/**艦隊補給座標**/,ng={591+Config.xy[0],147+Config.xy[1]}/**遠征**/
-	var gt2={{415+Config.xy[0],106+Config.xy[1]}/**第二#**/,{445+Config.xy[0],106+Config.xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+Config.xy[0],428+Config.xy[1]}/**決定鈕**/
+	var gt={{168+Config.xy[0],113+Config.xy[1]},{198+Config.xy[0],113+Config.xy[1]},{228+Config.xy[0],113+Config.xy[1]}}/**艦隊補給座標**/,ng={591+Config.xy[0],147+Config.xy[1]}/**遠征**/
+	var gt2={{415+Config.xy[0],106+Config.xy[1]}/**第二#**/,{445+Config.xy[0],106+Config.xy[1]}/**第三**/}/**遠征艦隊**/,gtb={631+Config.xy[0],430+Config.xy[1]}/**決定鈕**/
 	var hgb={534+Config.xy[0],428+Config.xy[1]}/**遠征開始鈕**//**,hsb={491+Config.xy[0],292+Config.xy[1]}取消鈕**/
 	var fc={
-			{112+Config.xy[0],431+Config.xy[1]},
-			{154+Config.xy[0],431+Config.xy[1]},
-			{195+Config.xy[0],431+Config.xy[1]},
-			{236+Config.xy[0],431+Config.xy[1]},
-			{278+Config.xy[0],431+Config.xy[1]},
-			{319+Config.xy[0],431+Config.xy[1]},
-			{360+Config.xy[0],431+Config.xy[1]}
+			{119+Config.xy[0],432+Config.xy[1]},
+			{161+Config.xy[0],432+Config.xy[1]},
+			{202+Config.xy[0],432+Config.xy[1]},
+			{243+Config.xy[0],432+Config.xy[1]},
+			{285+Config.xy[0],432+Config.xy[1]},
+			{328+Config.xy[0],432+Config.xy[1]},
+			{367+Config.xy[0],432+Config.xy[1]}
 		}/**換頁鈕**/
 	var _25s=2500,kancount=3#,delay=600/*這是固定的延遲時間*/
 	var go=0,state="s"#一開始直接進設定畫面
@@ -243,7 +243,7 @@ class KanColle_Script
 
 		for (var i=0;i<kancount;i=i+1)
 			if ktt[i]==-1
-				Mouse.mousem(gt[i][0]+Math.rand(16),gt[i][1]+Math.rand(16))
+				Mouse.mousem(gt[i][0]+Math.rand(15),gt[i][1]+Math.rand(15))
 				checkCheckCursorType()
 				click()
 				Thread.sleep(s)
@@ -289,7 +289,7 @@ class KanColle_Script
 		for (var i=0;i<kancount;i=i+1)
 			if ktt[i]==-1
 					if pages[i]!=nowPage
-						Mouse.mousem(fc[pages[i]-1][0]+Math.rand(35),fc[pages[i]-1][1]+Math.rand(19))
+						Mouse.mousem(fc[pages[i]-1][0]+Math.rand(34),fc[pages[i]-1][1]+Math.rand(17))
 						checkCheckCursorType()
 						click()
 						nowPage=pages[i]
@@ -298,7 +298,7 @@ class KanColle_Script
 					checkCheckCursorType()
 					click()
 					Thread.sleep(400)
-					Mouse.mousem(gtb[0]+Math.rand(91),gtb[1]+Math.rand(30))
+					Mouse.mousem(gtb[0]+Math.rand(91),gtb[1]+Math.rand(28))
 					checkCheckCursorType()
 					click()
 					Thread.sleep(s)
